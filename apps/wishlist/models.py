@@ -41,7 +41,7 @@ class UserManager(models.Manager):
                 # encrypt password 
                 password = request.POST['password']
                 hashed_pw = bcrypt.hashpw(password.encode(), bcrypt.gensalt())		
-                User.objects.create(name=request.POST['name'],username=request.POST['username'],password=hashed_pw)#,hired=request.POST['hired_date'] )
+                User.objects.create(name=request.POST['name'],username=request.POST['username'],password=hashed_pw,hired=request.POST['hired_date'] )
                 messages.success(request,"Successfully Registered, Proceed to login")
                 return valid
 
@@ -52,6 +52,7 @@ class User(models.Model):
     password = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
+    hired = models.DateTimeField(auto_now = True)
 
     objects = UserManager()
 
