@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Wish</title>
+    <style>
+    .right {
+        margin-left: 90%
+    }
+    </style>
+</head>
+<body>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+            <div class='right'>
+                <a href="/dashboard">Home</a>
+                <a href="/logout">Logout</a>
+            </div>
+            <h2> Create a New Wish List Item </h2>
+                <form action="/addwish" method="POST" > <!--added to all routes/ -->
+                    {% csrf_token %}
+                    <p>Product: <input type="text" name="item" ></p>
+                    
+                    <p><input type="submit" name="add_wish"  value="Add "></p>
+    
+                </form>
+       
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wish List Login/Register</title>
+    <style>
+    .left{
+
+        width: 400px;
+        display: inline;
+        margin-right: 50px;
+    }
+    .right{
+        width: 400px;
+        display: inline;
+        vertical-align: top;
+    }
+    
+    
+    </style>
+</head>
+<body>
+  <h2>Welcome !</h2>
+
+    <fieldset class="left"> 
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        <legend>Register </legend>
+            <form action="register" method="POST" >
+                {% csrf_token %}
+                <p>Name : <input type="text" name="name" ></p>
+                <p>User name:<input type="text" name="username" ></p>
+                <p>password: <input type="text" name="password" ></p>
+                <p>*Password should be atleast 8 characters long</p>
+                <p>Confirm Password: <input type="text" name="confirmpassword" ></p>
+                <!--<p> Date Hired : <input type="date" name="hired_date"></p> -->
+                <p><input type="submit" name="register"  value="Register"></p>
+
+            </form>
+    </fieldset>
+
+    <fieldset class="right"> 
+        <legend>Login </legend>
+            <form action="login" method="POST" >
+                {% csrf_token %}
+                <p>User name:<input type="text" name="username" ></p>
+                <p>password: <input type="text" name="password" ></p>
+                <p><input type="submit" name="register"  value="Login"></p>
+
+            </form>
+    </fieldset>
+
+</body>
+</html>

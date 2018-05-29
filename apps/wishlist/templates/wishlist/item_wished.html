@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Product Details</title>
+    <style>
+        .right {
+                margin-left: 90%
+            }
+    </style>
+</head>
+<body>
+        <div class='right'>
+                <a href="/dashboard">Home</a>
+                <a href="/logout">Logout</a>
+        </div>
+   <h2> {{item_details.item}}</h2>
+
+   
+    <h2>Users who added this product under their wishlist</h2>
+    <hr>
+    
+   {% for key in whose_wish %}
+    <p>{{ key.username}}</p>
+   {% endfor %}
+   
+
+  
+</body>
+</html>

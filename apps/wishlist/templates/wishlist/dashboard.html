@@ -1,0 +1,121 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wish List</title>
+    <style>
+            #customers {
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+            
+            #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+            
+            #customers tr:nth-child(even){background-color: #f2f2f2;}
+            
+            #customers tr:hover {background-color: #ddd;}
+            
+            #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #4CAF50;
+                color: white;
+            }
+            .left{
+                display: inline;
+            }
+
+            .right{
+                margin-left: 90%;
+                margin-bottom: 2%
+            }
+
+            .add_item{
+                margin-left: 90%;
+                margin-top :5%
+            }
+            </style>
+
+
+</head>
+<body>
+    <div class='left'>
+        <h2>Hello {{user.username}} ! </h2>
+        <h4>Your Wish List</h4>
+    </div>
+
+    <div class='right'>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <table id="customers">
+            <tr>
+              <th>Items</th>
+              <th>Added by</th>
+              <th>Added Date</th>
+              <th>Action </th>
+            </tr>
+            
+              {% for wish in user_wish_list %}
+            <tr>
+              <td><a href="/wish_items/{{wish.id}}" >{{wish.item}} </a></td>
+             
+              <td>{{wish.added_by}}</td>
+              <td>{{wish.created_at}}</td>
+              {% if wish.added_by == user.username %}
+              <td><a href="/deletewish/{{wish.id}}">Delete</a></td>
+              {% else %}
+
+              
+              <td><a href="/removewish/{{wish.id}}">Remove from my list</a></td>
+              {% endif %}
+              
+              
+            </tr>
+              {% endfor %}
+           
+          </table>
+          <hr>
+          <h4>Other User Wish List</h4>
+    <table id="customers">
+                <tr>
+                    
+                  <th>Items</th>
+                  <th>Added by</th>
+                  <th>Added date</th>
+                  <th>Action </th>
+                </tr>
+                
+                   <!--added / before all routes -->
+
+                   {% for wish in others_wish_list %}
+                <tr>
+                   
+                  <td><a href="/wish_items/{{wish.id}}" >{{wish.item}} </a></td>
+                  <td>{{wish.added_by}}</td> 
+                  <td>{{wish.created_at}}</td>
+                  <td><a href="/joinwish/{{wish.id}}" >Add to my wishlist</a></td>
+                 
+                  
+                  
+                </tr>
+                  {% endfor %}
+               
+              </table>
+    
+        <div class="add_item">  
+          <a href="/wish_item/create">Add Item</a>
+        </div>
+
+
+</body>
+</html>
