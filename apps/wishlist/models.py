@@ -6,8 +6,8 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib import messages
 import bcrypt
-from django.core.validators import validate_email
-from django.core.exceptions import ValidationError
+#from django.core.validators import validate_email
+#from django.core.exceptions import ValidationError
 
 # Create your models here.
 
